@@ -125,10 +125,15 @@ h1 {
    height: 75%;
    margin: 10px;
    padding: 20px;
+   border: 2px solid red;
+   border-radius: 15px;
+   background: #02ccba url('../img/confetti-1925258_1920.png');
+   background-position: center;
+   color: #020309;
    display: flex;
    flex-flow: column;
    justify-content: center;
-   border: 2px solid black;
+
  }
 
  .congrats,
@@ -196,3 +201,5 @@ h1 {
  .play-again {
    margin: 10px;
  }
+
+ .play-again
