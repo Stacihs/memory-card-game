@@ -3,18 +3,23 @@
  */
  const cards = [ "fa-diamond", "fa-paper-plane-o", "fa-anchor", "fa-bolt", "fa-cube", "fa-anchor", "fa-leaf", "fa-bicycle", "fa-diamond", "fa-paper-plane-o", "fa-anchor", "fa-bolt", "fa-cube", "fa-anchor", "fa-leaf", "fa-bicycle"];
 
+const deck = document.querySelector(".deck");
+const gameBoard = document.createDocumentFragment();
 
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
 
 //generate game board
 function createBoard() {
+    shuffle(cards);
+    for (const card of cards) {
+      const li = document.createElement("li");
+      li.innerHTML = `<li class="card"><i class="fa ${card}"></i></li>`;
+      gameBoard.appendChild(li);
+      deck.appendChild(gameBoard);
+    };
 
+    return deck;
 }
+
 
 function startGame() {
 
@@ -40,7 +45,6 @@ function shuffle(array) {
  let openCards = [];
  const card = document.querySelector("li.card");
 
-//show card
 everyCard.forEach(function(card) {
    card.addEventListener("click", function(evt) {
      card.classList.add("open", "show");
