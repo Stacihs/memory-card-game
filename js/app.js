@@ -20,11 +20,6 @@ function createBoard() {
     return deck;
 }
 
-
-function startGame() {
-
-}
-
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -39,18 +34,20 @@ function shuffle(array) {
 
     return array;
 }
+createBoard();
 
+const allCards = document.querySelectorAll(".card");
+let openCards = [];
 
- const everyCard = document.querySelectorAll(".card");
- let openCards = [];
- const card = document.querySelector("li.card");
-
-everyCard.forEach(function(card) {
-   card.addEventListener("click", function(evt) {
-     card.classList.add("open", "show");
-     console.log(card);
-   });
+allCards.forEach(function(card) {
+  card.addEventListener("click", function(event) {
+    card.classList.add("open", "show");
+  });
 });
+
+function startGame() {
+
+}
 
 //add matched cards to list of open cards
 function saveCards() {
