@@ -1,4 +1,4 @@
-/* TODO: hide modal, position modal, style modal text, make deck responsive*/
+/* TODO: style modal text, make deck responsive*/
 html {
     box-sizing: border-box;
 }
@@ -123,8 +123,12 @@ h1 {
  */
 
  .modal {
-   width: 75%;
-   height: 75%;
+   position: fixed;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   width: 80%;
+   height: 80%;
    margin: 10px;
    padding: 20px;
    border: 2px solid red;
@@ -132,6 +136,7 @@ h1 {
    background: #02ccba url('../img/confetti-1925258_1920.png');
    background-position: center;
    color: #020309;
+   visibility: hidden;
    display: flex;
    flex-flow: column;
    justify-content: center;
@@ -193,6 +198,7 @@ h1 {
 
  .new-game {
    font-size: 25px;
+   height: 25%;
  }
 
  .new-game h4,
@@ -204,4 +210,8 @@ h1 {
    margin: 10px;
  }
 
- .play-again
+ button {
+   height: 15%;
+   width: 10%;
+   cursor: pointer;
+ }
