@@ -85,5 +85,7 @@ function starRating() {
 }
 
 function gameOver() {
-  
+  if (matchedCards.length == 16) {
+    document.querySelector(".modal").style.visibility = "visible";
+  };
 }
