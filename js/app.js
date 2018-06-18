@@ -38,30 +38,44 @@ createBoard();
 
 const allCards = document.querySelectorAll(".card");
 let openCards = [];
+let matchedCards = [];
+let moves = 0;
 
 allCards.forEach(function(card) {
-  card.addEventListener("click", function(event) {
-    card.classList.add("open", "show");
+   card.addEventListener("click", function(event) {
+     card.classList.add("open", "show");
+     saveCard(card);
   });
 });
+
 
 function startGame() {
 
 }
 
-//add matched cards to list of open cards
-function saveCards() {
-  const openCard = card.classList.contains("open", "show", "match");
-  openCards.push(openCard);
-  console.log(openCards);
+//add displayed cards to list
+function saveCard(card) {
+  openCards.push(card);
 }
 
-function matchCards() {
 
-
+//check if cards in list match
+function matchCards(card) {
+  if (openCards[0].isEqualNode(openCards[1])) {
+    openCards[0].classList.add("match");
+    openCards[1].classList.add("match");
+    matchedCards.push(openCards[0], openCards[1]);
+    openCards = [];
+  } else {
+    openCards[0].classList.remove("open", "show");
+    openCards[1].classList.remove("open", "show");
+    openCards = [];
+  }
 }
+
 
 function countMoves() {
+
 
 }
 
@@ -71,5 +85,5 @@ function starRating() {
 }
 
 function gameOver() {
-
+  
 }
