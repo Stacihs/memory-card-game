@@ -1,7 +1,7 @@
 /*
  * Create a list that holds all of your cards
  */
- const cards = [ "fa-diamond", "fa-paper-plane-o", "fa-anchor", "fa-bolt", "fa-cube", "fa-anchor", "fa-leaf", "fa-bicycle", "fa-diamond", "fa-paper-plane-o", "fa-anchor", "fa-bolt", "fa-cube", "fa-anchor", "fa-leaf", "fa-bicycle"];
+ const cards = [ "fa-diamond", "fa-paper-plane-o", "fa-anchor", "fa-bolt", "fa-cube", "fa-anchor", "fa-leaf", "fa-bicycle", "fa-diamond", "fa-paper-plane-o", "fa-bomb", "fa-bolt", "fa-cube", "fa-bomb", "fa-leaf", "fa-bicycle"];
 
 const deck = document.querySelector(".deck");
 const gameBoard = document.createDocumentFragment();
@@ -41,6 +41,7 @@ let openCards = [];
 let matchedCards = [];
 let moves = 0;
 
+
 allCards.forEach(function(card) {
    card.addEventListener("click", function(event) {
      card.classList.add("open", "show");
@@ -49,7 +50,11 @@ allCards.forEach(function(card) {
 });
 
 
-function startGame() {
+function newGame() {
+
+}
+
+function gameClock() {
 
 }
 
@@ -76,9 +81,7 @@ function matchCards(card) {
 
 function countMoves() {
 
-
 }
-
 //quality of play
 function starRating() {
 
