@@ -2,23 +2,23 @@
  * Create a list that holds all of your cards
  */
  const cards = [ "fa-diamond", "fa-paper-plane-o", "fa-anchor", "fa-bolt", "fa-cube", "fa-anchor", "fa-leaf", "fa-bicycle", "fa-diamond", "fa-paper-plane-o", "fa-bomb", "fa-bolt", "fa-cube", "fa-bomb", "fa-leaf", "fa-bicycle"];
-
 const deck = document.querySelector(".deck");
 const gameBoard = document.createDocumentFragment();
+let moves = 0;
 
+createBoard();
 
-//generate game board
-function createBoard() {
-    shuffle(cards);
-    for (const card of cards) {
-      const li = document.createElement("li");
-      li.innerHTML = `<li class="card"><i class="fa ${card}"></i></li>`;
-      gameBoard.appendChild(li);
-      deck.appendChild(gameBoard);
-    };
+const allCards = document.querySelectorAll(".card");
+let matchedCards = [];
+let openCards = [];
 
-    return deck;
-}
+// flip cards
+allCards.forEach(function(card) {
+   card.addEventListener("click", function(event) {
+     card.classList.add("open", "show");
+     saveCard(card);
+  });
+});
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -34,24 +34,18 @@ function shuffle(array) {
 
     return array;
 }
-createBoard();
 
-const allCards = document.querySelectorAll(".card");
-let openCards = [];
-let matchedCards = [];
-let moves = 0;
+//generate game board
+function createBoard() {
+    shuffle(cards);
+    for (const card of cards) {
+      const li = document.createElement("li");
+      li.innerHTML = `<li class="card"><i class="fa ${card}"></i></li>`;
+      gameBoard.appendChild(li);
+      deck.appendChild(gameBoard);
+    };
 
-
-allCards.forEach(function(card) {
-   card.addEventListener("click", function(event) {
-     card.classList.add("open", "show");
-     saveCard(card);
-  });
-});
-
-
-function newGame() {
-
+    return deck;
 }
 
 function gameClock() {
@@ -63,32 +57,39 @@ function saveCard(card) {
   openCards.push(card);
 }
 
-
-//check if cards in list match
-function matchCards(card) {
-  if (openCards[0].isEqualNode(openCards[1])) {
+//check if cards in openCards list match
+function matchCards(cards) {
+  // keep matched cards displayed
+  if (openCards[1].isEqualNode(openCards[0])) {
     openCards[0].classList.add("match");
     openCards[1].classList.add("match");
     matchedCards.push(openCards[0], openCards[1]);
     openCards = [];
   } else {
+    // flip unmatched cards back over
     openCards[0].classList.remove("open", "show");
     openCards[1].classList.remove("open", "show");
     openCards = [];
   }
 }
 
-
-function countMoves() {
-
+function countMoves(moveCount) {
+  if(moves = 0) {
+    moves++;
+  }
 }
-//quality of play
+//rate quality of play
 function starRating() {
 
 }
 
 function gameOver() {
-  if (matchedCards.length == 16) {
+  if (matchedCards.length === 16) {
     document.querySelector(".modal").style.visibility = "visible";
   };
+}
+
+// start a new game
+function newGame() {
+
 }
