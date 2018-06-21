@@ -56,13 +56,14 @@ function createBoard() {
 
 const clock = document.querySelector("span.timer");
 let seconds = 0;
-let minutes = seconds * 60;
 const timer = setInterval(startTimer, 1000);
 
 
 function startTimer() {
+    let minutes = Math.floor(seconds / 60);
+    let otherSeconds = seconds % 60;
     seconds++;
-    clock.textContent = `${minutes}:${seconds}`;
+    clock.textContent = `${minutes < 10 ? '0' : ''}${minutes}:${otherSeconds < 10 ? '0' : ''}${otherSeconds}`;
 }
 
 function stopTimer() {
@@ -98,8 +99,10 @@ function starRating() {
 
 function gameOver() {
   if (matchedCards.length === 16) {
+    stopTimer();
     document.querySelector(".modal").style.visibility = "visible";
   };
+
 }
 
 // start a new game
