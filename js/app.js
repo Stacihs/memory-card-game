@@ -5,6 +5,7 @@
 const deck = document.querySelector(".deck");
 const gameBoard = document.createDocumentFragment();
 let moves = 0;
+const restart = document.querySelector(".fa-repeat");
 
 createBoard();
 
@@ -18,7 +19,12 @@ allCards.forEach(function(card) {
      card.classList.add("open", "show");
      saveCard(card);
   });
+
 });
+
+restart.addEventListener("click", function(event) {
+  newGame();
+})
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -48,9 +54,21 @@ function createBoard() {
     return deck;
 }
 
-function gameClock() {
+const clock = document.querySelector("span.timer");
+let seconds = 0;
+let minutes = seconds * 60;
+const timer = setInterval(startTimer, 1000);
 
+
+function startTimer() {
+    seconds++;
+    clock.textContent = `${minutes}:${seconds}`;
 }
+
+function stopTimer() {
+  clearInterval(timer);
+}
+
 
 //add displayed cards to list
 function saveCard(card) {
@@ -58,7 +76,7 @@ function saveCard(card) {
 }
 
 //check if cards in openCards list match
-function matchCards(cards) {
+function matchCards() {
   // keep matched cards displayed
   if (openCards[1].isEqualNode(openCards[0])) {
     openCards[0].classList.add("match");
@@ -73,11 +91,6 @@ function matchCards(cards) {
   }
 }
 
-function countMoves(moveCount) {
-  if(moves = 0) {
-    moves++;
-  }
-}
 //rate quality of play
 function starRating() {
 
