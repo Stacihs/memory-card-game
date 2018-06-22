@@ -12,6 +12,9 @@ createBoard();
 const allCards = document.querySelectorAll(".card");
 let matchedCards = [];
 let openCards = [];
+const clock = document.querySelector("span.timer");
+let seconds = 0;
+const timer = setInterval(startTimer, 1000);
 
 // flip cards
 allCards.forEach(function(card) {
@@ -19,7 +22,6 @@ allCards.forEach(function(card) {
      card.classList.add("open", "show");
      saveCard(card);
   });
-
 });
 
 restart.addEventListener("click", function(event) {
@@ -54,11 +56,6 @@ function createBoard() {
     return deck;
 }
 
-const clock = document.querySelector("span.timer");
-let seconds = 0;
-const timer = setInterval(startTimer, 1000);
-
-
 function startTimer() {
     let minutes = Math.floor(seconds / 60);
     let otherSeconds = seconds % 60;
@@ -70,22 +67,21 @@ function stopTimer() {
   clearInterval(timer);
 }
 
-
-//add displayed cards to list
+//add displayed cards to a list
 function saveCard(card) {
   openCards.push(card);
 }
 
 //check if cards in openCards list match
 function matchCards() {
-  // keep matched cards displayed
+// keep matched cards displayed
   if (openCards[1].isEqualNode(openCards[0])) {
     openCards[0].classList.add("match");
     openCards[1].classList.add("match");
     matchedCards.push(openCards[0], openCards[1]);
     openCards = [];
   } else {
-    // flip unmatched cards back over
+// flip unmatched cards back over
     openCards[0].classList.remove("open", "show");
     openCards[1].classList.remove("open", "show");
     openCards = [];
@@ -97,9 +93,12 @@ function starRating() {
 
 }
 
+// congrats modal pops up when game is won
 function gameOver() {
+  stopTimer();
+  let totalTime = document.querySelector("p.totalTime");
+  totalTime.textContent = clock.textContent;
   if (matchedCards.length === 16) {
-    stopTimer();
     document.querySelector(".modal").style.visibility = "visible";
   };
 
