@@ -16,24 +16,26 @@ const yes = document.querySelector("[name=yes]");
 
 createBoard();
 
+// stopTimer();
+
 const allCards = document.querySelectorAll(".card");
 let matchedCards = [];
 let openCards = [];
 
-startGame();
 
 function startGame() {
   allCards.forEach(function(card) {
     card.addEventListener("click", function(event) {
+// start timer on first click
       if (seconds == 0) {
         timer = setInterval(startTimer, 1000);
       }
+// flip cards
       card.classList.add("open", "show");
       saveCard(card);
     });
   });
 }
-// flip cards
 
 
 
@@ -42,6 +44,7 @@ restart.addEventListener("click", function(event) {
 })
 
 yes.addEventListener("click", function(event) {
+  document.querySelector(".modal").style.visibility = "hidden";
   newGame();
 })
 
@@ -123,10 +126,14 @@ function movesCounter() {
 }
 
 // congrats modal pops up when game is won
+let totalTime = document.querySelector("p.totalTime");
+let stars_rating = document.querySelector("ul.stars-rating");
+
+
 function gameOver() {
-  // stopTimer();
-  let totalTime = document.querySelector("p.totalTime");
+  stopTimer();
   totalTime.textContent = clock.textContent;
+  stars_rating.innerHTML = star_count.innerHTML;
   if (matchedCards.length === 16) {
     document.querySelector(".modal").style.visibility = "visible";
   };
