@@ -179,6 +179,7 @@ h1 {
    align-items: center;
  }
 
+ .clock,
  .rating,
  .final-time p,
  .stars-rating {
