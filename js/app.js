@@ -9,9 +9,10 @@ let moves = 0;
 const restart = document.querySelector(".fa-repeat");
 const clock = document.querySelector("span.timer");
 let seconds = 0;
-const timer = setInterval(startTimer, 1000);
+let timer;
 const deck = document.querySelector(".deck");
 const gameBoard = document.createDocumentFragment();
+const yes = document.querySelector("[name=yes]");
 
 createBoard();
 
@@ -19,17 +20,28 @@ const allCards = document.querySelectorAll(".card");
 let matchedCards = [];
 let openCards = [];
 
+startGame();
 
-// flip cards
-allCards.forEach(function(card) {
-  card.addEventListener("click", function(event) {
-    card.classList.add("open", "show");
-    saveCard(card);
+function startGame() {
+  allCards.forEach(function(card) {
+    card.addEventListener("click", function(event) {
+      if (seconds == 0) {
+        timer = setInterval(startTimer, 1000);
+      }
+      card.classList.add("open", "show");
+      saveCard(card);
+    });
   });
-});
+}
+// flip cards
+
 
 
 restart.addEventListener("click", function(event) {
+  newGame();
+})
+
+yes.addEventListener("click", function(event) {
   newGame();
 })
 
@@ -112,7 +124,7 @@ function movesCounter() {
 
 // congrats modal pops up when game is won
 function gameOver() {
-  stopTimer();
+  // stopTimer();
   let totalTime = document.querySelector("p.totalTime");
   totalTime.textContent = clock.textContent;
   if (matchedCards.length === 16) {
