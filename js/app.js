@@ -6,38 +6,23 @@ let star_count = document.querySelector("ul.stars");
 const star = document.querySelector("ul.stars li");
 const counter = document.querySelector("span.moves");
 let moves = 0;
-const restart = document.querySelector(".fa-repeat");
+const restart = document.querySelector(".restart");
 const clock = document.querySelector("span.timer");
 let seconds = 0;
 let timer;
 const deck = document.querySelector(".deck");
 const gameBoard = document.createDocumentFragment();
 const yes = document.querySelector("[name=yes]");
+let totalTime = document.querySelector("p.totalTime");
+let stars_rating = document.querySelector("ul.stars-rating");
 
 createBoard();
-
-// stopTimer();
 
 const allCards = document.querySelectorAll(".card");
 let matchedCards = [];
 let openCards = [];
 
-
-function startGame() {
-  allCards.forEach(function(card) {
-    card.addEventListener("click", function(event) {
-// start timer on first click
-      if (seconds == 0) {
-        timer = setInterval(startTimer, 1000);
-      }
-// flip cards
-      card.classList.add("open", "show");
-      saveCard(card);
-    });
-  });
-}
-
-
+startGame();
 
 restart.addEventListener("click", function(event) {
   newGame();
@@ -76,6 +61,22 @@ function createBoard() {
   return deck;
 }
 
+function startGame() {
+  allCards.forEach(function(card) {
+    card.addEventListener("click", function(event) {
+// start timer on first click
+      if (seconds == 0) {
+// calling startTimer starts the timer immediately
+        startTimer();
+        timer = setInterval(startTimer, 1000);
+      }
+// flip cards
+      card.classList.add("open", "show");
+      saveCard(card);
+    });
+  });
+}
+
 function startTimer() {
   let minutes = Math.floor(seconds / 60);
   let otherSeconds = seconds % 60;
@@ -110,7 +111,7 @@ function matchCards() {
   }
 }
 
-//rate quality of play
+//rate quality of play by removing stars
 function movesCounter() {
   moves++;
   counter.textContent = `${moves}`;
@@ -126,10 +127,6 @@ function movesCounter() {
 }
 
 // congrats modal pops up when game is won
-let totalTime = document.querySelector("p.totalTime");
-let stars_rating = document.querySelector("ul.stars-rating");
-
-
 function gameOver() {
   stopTimer();
   totalTime.textContent = clock.textContent;
@@ -137,13 +134,9 @@ function gameOver() {
   if (matchedCards.length === 16) {
     document.querySelector(".modal").style.visibility = "visible";
   };
-
 }
 
 // start a new game
 function newGame() {
-  moves = 0;
-  seconds = 0;
-  deck.innerHTML = "";
-  createBoard();
+  window.location.reload(true);
 }
