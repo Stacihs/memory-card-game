@@ -22,8 +22,6 @@ const allCards = document.querySelectorAll(".card");
 let matchedCards = [];
 let openCards = [];
 
-startGame();
-
 restart.addEventListener("click", function(event) {
   newGame();
 })
@@ -32,6 +30,18 @@ yes.addEventListener("click", function(event) {
   document.querySelector(".modal").style.visibility = "hidden";
   newGame();
 })
+
+allCards.forEach(function(card) {
+    card.addEventListener("click", function(event) {
+      if (seconds == 0) {// start timer on first click
+        startTimer(); // starts the timer immediately
+        timer = setInterval(startTimer, 1000);
+      }
+      saveCard(card); // flip cards
+    });
+});
+
+setInterval(matchCards, 2000);
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -61,22 +71,6 @@ function createBoard() {
   return deck;
 }
 
-function startGame() {
-  allCards.forEach(function(card) {
-    card.addEventListener("click", function(event) {
-// start timer on first click
-      if (seconds == 0) {
-// calling startTimer starts the timer immediately
-        startTimer();
-        timer = setInterval(startTimer, 1000);
-      }
-// flip cards
-      card.classList.add("open", "show");
-      saveCard(card);
-    });
-  });
-}
-
 function startTimer() {
   let minutes = Math.floor(seconds / 60);
   let otherSeconds = seconds % 60;
@@ -90,24 +84,29 @@ function stopTimer() {
 
 //add displayed cards to a list
 function saveCard(card) {
-  openCards.push(card);
+  if (!card.classList.contains('open') && !card.classList.contains('show')) {
+    openCards.push(card);
+    card.classList.add("open", "show");
+  }
 }
 
 //check if cards in openCards list match
 function matchCards() {
   // keep matched cards displayed
-  if (openCards[0].isEqualNode(openCards[1])) {
-    openCards[0].classList.add("match");
-    openCards[1].classList.add("match");
-    matchedCards.push(openCards[0], openCards[1]);
-    openCards = [];
-    movesCounter()
-  } else {
-    // flip unmatched cards back over
-    openCards[0].classList.remove("open", "show");
-    openCards[1].classList.remove("open", "show");
-    openCards = [];
-    movesCounter();
+  if (openCards.length == 2) {
+    if (openCards[0].isEqualNode(openCards[1])) {
+      openCards[0].classList.add("match");
+      openCards[1].classList.add("match");
+      matchedCards.push(openCards[0], openCards[1]);
+      openCards = [];
+      movesCounter()
+    } else {
+      // flip unmatched cards back over
+      openCards[0].classList.remove("open", "show");
+      openCards[1].classList.remove("open", "show");
+      openCards = [];
+      movesCounter();
+    }
   }
 }
 
