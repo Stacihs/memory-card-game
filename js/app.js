@@ -34,14 +34,17 @@ yes.addEventListener("click", function(event) {
 allCards.forEach(function(card) {
     card.addEventListener("click", function(event) {
       if (seconds == 0) {// start timer on first click
-        startTimer(); // starts the timer immediately
+        startTimer(); // starts the timer immediately, no delay
         timer = setInterval(startTimer, 1000);
       }
       saveCard(card); // flip cards
     });
 });
 
+// check if cards match
 setInterval(matchCards, 2000);
+
+
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -107,6 +110,10 @@ function matchCards() {
       openCards = [];
       movesCounter();
     }
+
+    if (matchedCards.length == 16) {
+      gameOver();
+    }
   }
 }
 
@@ -130,9 +137,7 @@ function gameOver() {
   stopTimer();
   totalTime.textContent = clock.textContent;
   stars_rating.innerHTML = star_count.innerHTML;
-  if (matchedCards.length === 16) {
-    document.querySelector(".modal").style.visibility = "visible";
-  };
+  document.querySelector(".modal").style.visibility = "visible";
 }
 
 // start a new game
