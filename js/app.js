@@ -44,8 +44,6 @@ allCards.forEach(function(card) {
 // check if cards match
 setInterval(matchCards, 2000);
 
-
-
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
   var currentIndex = array.length, temporaryValue, randomIndex;
