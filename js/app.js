@@ -1,3 +1,4 @@
+// TODO: change newGame() logic, animate card flip 
 /*
 * Create a list that holds all of your cards
 */
