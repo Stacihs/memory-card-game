@@ -1,108 +1,126 @@
 /* TODO: style modal text, make deck responsive*/
 html {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 *,
 *::before,
 *::after {
-    box-sizing: inherit;
+  box-sizing: inherit;
 }
 
 html,
 body {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-    background: #ffffff url('../img/geometry2.png'); /* Background pattern from Subtle Patterns */
-    font-family: 'Coda', cursive;
+  background: #ffffff url('../img/geometry2.png'); /* Background pattern from Subtle Patterns */
+  font-family: 'Coda', cursive;
 }
 
 .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+  margin-top: 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 h1 {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 300;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+  margin: 5px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  text-align: center;
 }
 
 /*
- * Styles for the deck of cards
- */
+* Styles for the game board
+*/
+
+.game-board {
+  width: 660px;
+  min-height: 680:
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
 .deck {
-    width: 660px;
-    min-height: 680px;
-    background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
-    padding: 32px;
-    border-radius: 10px;
-    box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0 0 3em;
-    list-style-type: none;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
+  border-radius: 10px;
+  box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin: 0 0 3em;
+  padding: 32px;
+  list-style-type: none;
 }
 
 .deck .card {
-    height: 125px;
-    width: 125px;
-    background: #2e3d49;
-    font-size: 0;
-    color: #ffffff;
-    border-radius: 8px;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
+  height: 125px;
+  width: 125px;
+  background: #2e3d49;
+  font-size: 0;
+  color: #ffffff;
+  border-radius: 8px;
+  margin: 10px;
+  cursor: pointer;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
 }
 
 .deck .card.open {
-    transform: rotateY(0);
-    background: #02b3e4;
-    cursor: default;
+  transform: rotateY(0);
+  background: #02b3e4;
+  cursor: default;
 }
 
 .deck .card.show {
-    font-size: 33px;
+  font-size: 33px;
 }
 
 .deck .card.match {
-    cursor: default;
-    background: #02ccba;
-    font-size: 33px;
+  cursor: default;
+  background: #02ccba;
+  font-size: 33px;
 }
 
 /*
- * Styles for the Score Panel
- */
+* Styles for the Score Panel
+*/
 
 .score-panel {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    width: 100%;
-    margin-bottom: 10px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 10px;
 }
 
 .score-panel .stars {
-    margin: 0 30px 0 0;
-    padding: 0;
+  margin: 0 30px 0 0;
+  padding: 0;
 }
 
 .score-panel .stars li {
-    list-style: none;
-    display: inline-block;
+  list-style: none;
+  display: inline-block;
 }
 
 .moves {
@@ -110,109 +128,109 @@ h1 {
 }
 
 .timer {
-  margin: 0px 5px 0 30px;
+  margin: 0px 30px 0 30px;
 }
 
 .score-panel .restart {
-    margin: 0 30px;
-    cursor: pointer;
+  margin: 0px 30px 0px 0px;
+  cursor: pointer;
 }
 
 /*
- * Styles for Modal
- */
+* Styles for Modal
+*/
 
- .modal {
-   position: fixed;
-   top: 50%;
-   left: 50%;
-   transform: translate(-50%, -50%);
-   width: 80%;
-   height: 80%;
-   margin: 10px;
-   padding: 20px;
-   border: 2px solid red;
-   border-radius: 15px;
-   background: #02ccba url('../img/confetti-1925258_1920.png');
-   background-position: center;
-   color: #020309;
-   visibility: hidden;
-   display: flex;
-   flex-flow: column;
-   justify-content: center;
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 95%;
+  height: 95%;
+  padding: 20px;
+  border: 2px solid red;
+  border-radius: 15px;
+  background: #02ccba url('../img/confetti-1925258_1920.png');
+  background-position: center;
+  color: #020309;
+  visibility: hidden;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
 
- }
+}
 
- .congrats,
- .results,
- .new-game {
+.congrats,
+.results,
+.new-game {
   width: 100%;
- }
+}
 
- .congrats,
- .new-game {
-   display: flex;
-   flex-flow: column;
-   justify-content: center;
-   align-items: center;
- }
+.congrats,
+.new-game {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+}
 
- .congrats p {
-   margin: 0px;
-   font-size: 50px;
- }
+.congrats p {
+  margin: 0px;
+  font-size: 50px;
+}
 
- .results {
-   display: flex;
-   flex-flow: row wrap;
-   justify-content: center;
-   align-content: center;
-   font-size: 30px;
- }
+.results {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-content: center;
+  font-size: 30px;
+}
 
- .final-time,
- .game-rating {
-   width: 50%;
-   display: flex;
-   flex-flow: column;
-   justify-content: center;
-   align-items: center;
- }
+.final-time,
+.game-rating {
+  width: 50%;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+}
 
- .clock,
- .rating,
- .final-time p,
- .stars-rating {
-   margin: 10px;
-   text-align: center;
- }
+.clock,
+.rating,
+.final-time p,
+.stars-rating {
+  margin: 10px;
+  text-align: center;
+}
 
- .stars-rating {
-   padding: 0px;
- }
+.stars-rating {
+  padding: 0px;
+}
 
- .stars-rating li {
-     list-style: none;
-     display: inline-block;
- }
+.stars-rating li {
+  list-style: none;
+  display: inline-block;
+}
 
- .new-game {
-   font-size: 25px;
-   height: 25%;
- }
+.new-game {
+  font-size: 25px;
+  height: 25%;
+}
 
- .new-game h4,
- .new-game p {
-   margin: 5px;
- }
+.new-game h4,
+.new-game p {
+  margin: 5px;
+}
 
- .play-again {
-   margin: 10px;
- }
+.play-again {
+  margin: 10px;
+}
 
- button {
-   height: 15%;
-   width: 10%;
-   cursor: pointer;
-   font-size: .75em;
- }
+button {
+  height: 30%;
+  width: 15%;
+  background-color: white;
+  cursor: pointer;
+  font-size: 1em;
+}
