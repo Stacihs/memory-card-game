@@ -1,13 +1,63 @@
-@media screen and (min-width:480px) {
+@media screen and (max-width: 480px) {
+
+  h1 {
+    font-size: 2.5em;
+  }
+
+  .score-panel {
+    font-size: 2em;
+  }
+
+  .game-board {
+    width: 320px;
+    height: 340px;
+  }
+
+  .deck .card {
+    width: 46px;
+    height: 46px;
+    margin: 5px;
+  }
+
+  .deck .card.show,
+  .deck .card.match {
+    font-size: 30px;
+  }
+
+  .results {
+    font-size: 23px;
+  }
+}
+
+@media screen and (min-width: 481px) {
+
+  .score-panel {
+    font-size: 2em;
+  }
+
+  .game-board {
+    width: 440px;
+    height: 460px;
+  }
+
+  .deck .card {
+    width: 80px;
+    height: 80px;
+    margin: 5px;
+  }
 
 }
 
 @media screen and (min-width: 620px) {
+
+  .game-board {
+    width: 550px;
+    height: 680px;
   }
 
-@media screen and (min-width: 810px) {
+  .deck .card {
+    width: 90px;
+    height: 90px;
+    margin: 5px;
   }
-
-@media screen and (min-width: 1400px) {
-
 }
