@@ -1,9 +1,9 @@
-// TODO: change newGame() logic, animate card flip 
+// TODO: change newGame() logic, animate card flip
 /*
 * Create a list that holds all of your cards
 */
 const cards = [ "fa-diamond", "fa-paper-plane-o", "fa-anchor", "fa-bolt", "fa-cube", "fa-anchor", "fa-leaf", "fa-bicycle", "fa-diamond", "fa-paper-plane-o", "fa-bomb", "fa-bolt", "fa-cube", "fa-bomb", "fa-leaf", "fa-bicycle"];
-let star_count = document.querySelector("ul.stars");
+let starCount = document.querySelector("ul.stars");
 const star = document.querySelector("ul.stars li");
 const counter = document.querySelector("span.moves");
 let moves = 0;
@@ -15,7 +15,7 @@ const deck = document.querySelector(".deck");
 const gameBoard = document.createDocumentFragment();
 const yes = document.querySelector("[name=yes]");
 let totalTime = document.querySelector("p.totalTime");
-let stars_rating = document.querySelector("ul.stars-rating");
+let starsRating = document.querySelector("ul.stars-rating");
 
 createBoard();
 
@@ -120,11 +120,11 @@ function matchCards() {
 function movesCounter() {
   moves++;
   counter.textContent = `${moves}`;
-  const children = star_count.children;
+  const children = starCount.children;
   if (moves == 10) {
-    star_count.removeChild(children[2]);
+    starCount.removeChild(children[2]);
   } else if (moves == 20) {
-    star_count.removeChild(children[1]);
+    starCount.removeChild(children[1]);
   }
   else {
     return;
@@ -135,7 +135,7 @@ function movesCounter() {
 function gameOver() {
   stopTimer();
   totalTime.textContent = clock.textContent;
-  stars_rating.innerHTML = star_count.innerHTML;
+  starsRating.innerHTML = starCount.innerHTML;
   document.querySelector(".modal").style.visibility = "visible";
 }
 
