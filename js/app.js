@@ -23,6 +23,21 @@ const allCards = document.querySelectorAll(".card");
 let matchedCards = [];
 let openCards = [];
 
+
+
+allCards.forEach(function(card) {
+      card.addEventListener("click", function(event) {
+        if (seconds == 0) {// start timer on first click
+          startTimer(); // starts the timer immediately, no delay
+          timer = setInterval(startTimer, 1000);
+        }
+        saveCard(card); // flip cards
+      });
+});
+
+// check if cards match
+setInterval(matchCards, 2000);
+
 restart.addEventListener("click", function(event) {
   newGame();
 })
@@ -31,19 +46,6 @@ yes.addEventListener("click", function(event) {
   document.querySelector(".modal").style.visibility = "hidden";
   newGame();
 })
-
-allCards.forEach(function(card) {
-    card.addEventListener("click", function(event) {
-      if (seconds == 0) {// start timer on first click
-        startTimer(); // starts the timer immediately, no delay
-        timer = setInterval(startTimer, 1000);
-      }
-      saveCard(card); // flip cards
-    });
-});
-
-// check if cards match
-setInterval(matchCards, 2000);
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -86,7 +88,7 @@ function stopTimer() {
 
 //add displayed cards to a list
 function saveCard(card) {
-  if (!card.classList.contains('open') && !card.classList.contains('show')) {
+  if (!card.classList.contains('open') && !card.classList.contains('show') && openCards.length <= 1) {
     openCards.push(card);
     card.classList.add("open", "show");
   }
